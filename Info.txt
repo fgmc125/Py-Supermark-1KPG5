@@ -1,0 +1,12 @@
+pip install PyQt5
+
+# pip install mysql-connector-python
+#                  DB_HOST='bsi5brxpk0wz9ygdti6z-mysql.services.clever-cloud.com',
+#                  DB_USER='ulgg0or7rymoucea',
+#                  DB_PASS='KbmgO9lZCsLyLnKgWcGa',
+#                  DB_NAME='bsi5brxpk0wz9ygdti6z',
+#                  DB_PORT='3306'
+
+
+
+python -m PyQt5.uic.pyuic -x gui\master_main.ui -o gui\master_main.py
