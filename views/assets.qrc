@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>assets/icon/circle-user2.png</file>
+    <file>assets/icon/house2.png</file>
+    <file>assets/icon/store2.png</file>
+    <file>assets/icon/bars.png</file>
+    <file>assets/icon/circle-user.png</file>
+    <file>assets/icon/gear.png</file>
+    <file>assets/icon/house.png</file>
+    <file>assets/icon/store.png</file>
+  </qresource>
+  <qresource prefix="images">
+    <file>assets/img/logo_python.png</file>
+    <file>assets/img/offers_0.png</file>
+    <file>assets/img/basket.png</file>
+    <file>assets/img/cart-shopping.png</file>
+    <file>assets/img/heart.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>404</width>
+    <height>438</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Signup</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color : #FFF;
+	margin : 0px;
+	padding : 0px;
+}
+
+QFrame#content {
+	background-color : transparent;
+	border: 1px solid #DADDE1;
+	border-radius: 5px;
+	min-width : 380px;
+	min-height : 412px;
+}
+
+QLabel {
+	font : 77 12px &quot;Arial&quot;;
+	color : green;
+}
+
+QLineEdit {
+	background-color : transparent;
+	border : 1px solid #DADDE1;
+	border-radius : 5px;
+	color : #616161;
+	min-height : 40px;
+	font : 77 18px &quot;Arial&quot;;
+}
+
+QPushButton {
+	color : #FFFFFF;
+	border-style : solid;
+	border-radius: 5px;
+	min-height : 40px;
+	font : 77 18px &quot;Arial&quot;;
+}
+
+QPushButton#btn_login {
+	background-color : #1877F2;
+}
+
+QPushButton#btn_login:pressed {
+	background-color : transparent;
+	color : #1877F2;
+	border: 1px solid #1877F2;
+	border-radius: 5px;
+}
+
+QPushButton#btn_signup {
+	background-color : #42B72A;
+}
+
+QPushButton#btn_signup:hover, #btn_exit:hover, #btn_login:hover, #btn_cancel:hover {
+	border: 1px solid #FFF;
+	border-radius: 5px;
+}
+
+QPushButton#btn_signup:pressed {
+	background-color : transparent;
+	color : #42B72A;
+	border: 1px solid #42B72A;
+	border-radius: 5px;
+}
+
+QPushButton#btn_exit {
+	background-color : #616161;
+}
+
+QPushButton#btn_exit:pressed {
+	background-color : transparent;
+	color : #616161;
+	border: 1px solid #616161;
+	border-radius: 5px;
+}
+
+QPushButton#btn_forgotten_password {
+	border-style: outset;
+	border-width: 0px;
+	color : #1877F2;
+	font : 77 15px &quot;Arial&quot;;
+}
+
+QPushButton#btn_forgotten_password:hover {
+	text-decoration: underline;
+}
+
+QPushButton#btn_cancel {
+	background-color : red;
+}
+
+QPushButton#btn_cancel:pressed {
+	background-color : transparent;
+	color : red;
+	border: 1px solid red;
+	border-radius: 5px;
+}
+
+QPushButton#btn_show_password, #btn_show_repassword {
+	qproperty-icon: url(C:/Users/fgmcx/Documents/PycharmProjects/pythonProject1/icon/candado-cerrado.png);
+	qproperty-iconSize: 24px;
+	min-widgth : 32px;
+	min-height : 32px;
+}
+
+QPushButton#btn_show_password:hover, #btn_show_repassword:hover {
+	background-color : #DADDE1;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="content">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="lbl_info">
+        <property name="text">
+         <string>* Rellene los campos para continuar con el registro.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_name">
+        <property name="placeholderText">
+         <string> * Ingrese su nombre</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_surname">
+        <property name="placeholderText">
+         <string> * Ingrese su apellido</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_email">
+        <property name="placeholderText">
+         <string> * Ingrese su correo electronico</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_user">
+        <property name="placeholderText">
+         <string> * Ingrese un usuario</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLineEdit" name="tfd_password">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string> * Ingrese una contraseña</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_show_password">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLineEdit" name="tfd_repassword">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string> * Vuelva a ingresar la contraseña</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_show_repassword">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbl_info2">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="btn_cancel">
+          <property name="text">
+           <string>Cancelar</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_signup">
+          <property name="text">
+           <string>Crear cuenta</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
