@@ -64,7 +64,7 @@ QMainWindows {
 /* ----------------------- Aside Menu --------------------------- */
 
 #fme_aside {
-	background-color : #265792;
+	background-color : #1877F2; /*#265792*/
 	min-width : 49px;
 	max-width : 49px;
 }
@@ -109,7 +109,7 @@ QToolTip {
      <widget class="QFrame" name="fme_aside">
       <property name="styleSheet">
        <string notr="true">#fme_toggler:hover, #fme_config:hover, #fme_btn_0:hover, #fme_btn_1:hover, #fme_btn_2:hover {
-	background-color : #42B72A;
+	background-color : #5E6065;/*42B72A;*/
 }
 
 QPushButton {
@@ -590,6 +590,9 @@ QPushButton {
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <property name="leftMargin">
+              <number>11</number>
+             </property>
              <item>
               <widget class="QFrame" name="fme_logograma">
                <property name="minimumSize">
@@ -890,8 +893,8 @@ QPushButton {
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset>
-                       <normaloff>../assets/icon/magnifying-glass.png</normaloff>../assets/icon/magnifying-glass.png</iconset>
+                      <iconset resource="assets.qrc">
+                       <normaloff>:/icon/assets/icon/magnifying-glass.png</normaloff>:/icon/assets/icon/magnifying-glass.png</iconset>
                      </property>
                     </widget>
                    </item>

@@ -49,17 +49,37 @@ class LoginController(QDialog):
                         #self.__application.ui_config(QtWidgets.QMainWindow(), UiMainWindow(self.__application, self))
                         self.__application.ui_config_without_qwidget("main")
                     else:
-                        self.lbl_info.setStyleSheet("")
+                        self.lbl_info.setStyleSheet(
+                            "QLabel {\n"
+                            "    font : 77 12px \"Arial\";\n"
+                            "    color : red;"
+                            "}\n"
+                        )
                         self.lbl_info.setText(" * ¡ERROR! Contraseña incorrecta.")
                 else:
-                    self.lbl_info.setStyleSheet("")
+                    self.lbl_info.setStyleSheet(
+                        "QLabel {\n"
+                        "    font : 77 12px \"Arial\";\n"
+                        "    color : red;"
+                        "}\n"
+                    )
                     self.lbl_info.setText(
                         " * ¡ERROR! El usuario [ " + self.tfd_user.text() + " ] no esta registrado.")
             else:
-                self.lbl_info.setStyleSheet("")
+                self.lbl_info.setStyleSheet(
+                    "QLabel {\n"
+                    "    font : 77 12px \"Arial\";\n"
+                    "    color : red;"
+                    "}\n"
+                )
                 self.lbl_info.setText(" * ¡ERROR! Los campos no pueden estar vacios.")
         else:
-            self.lbl_info.setStyleSheet("")
+            self.lbl_info.setStyleSheet(
+                "QLabel {\n"
+                "    font : 77 12px \"Arial\";\n"
+                "    color : red;"
+                "}\n"
+            )
             self.lbl_info.setText(" * ¡ERROR! No se pudo realizar la coneccion.")
 
         self._connector.close()
