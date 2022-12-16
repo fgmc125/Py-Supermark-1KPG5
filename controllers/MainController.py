@@ -114,12 +114,20 @@ class MainController(QMainWindow):
             data = self.frame_3.findChildren(QtWidgets.QPushButton)
             for qwidget in data:
                 qwidget.deleteLater()
+        elif name == "Cards":
+            data = self.scrollAreaWidgetContents.findChildren(CardController)
+            for qwidget in data:
+                qwidget.deleteLater()
+            data = self.scrollAreaWidgetContents.findChildren(QtWidgets.QFrame)
+            for qwidget in data:
+                qwidget.deleteLater()
 
     def __load(self):
         self._connector = Conexion()
         if self._connector.is_connected():
             sql = "SELECT id, name FROM bhhj3cug6bdknptqdl7k.category_db"
             self.category_data = self._connector.run_query(sql)
+            self._connector.close()
             if self.category_data:
                 pass
         else:
@@ -133,17 +141,19 @@ class MainController(QMainWindow):
 
     def __load_content_area(self):
         self.__load()
-        frame = QtWidgets.QFrame(self.centralwidget)
+        self.__clean(name="Cards")
+        frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
         frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        frame.setMidLineWidth(0)
         frame.setObjectName("frame_0")
+
         horizontal_layout_0 = QtWidgets.QHBoxLayout(frame)
-        horizontal_layout_0.setContentsMargins(11, -1, -1, -1)
+        horizontal_layout_0.setContentsMargins(0, 0, 0, 0)
         horizontal_layout_0.setObjectName("horizontal_layout_0")
+
         for category in self.category_data:
             card = CardController(category=category)
             card.setObjectName(str(category[1]))
             horizontal_layout_0.addWidget(card)
 
-        self.scrollAreaWidgetContents.addWidget(frame)
+        self.verticalLayout_13.addWidget(frame)

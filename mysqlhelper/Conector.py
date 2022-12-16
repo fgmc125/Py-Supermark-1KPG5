@@ -34,23 +34,18 @@ class Conexion:
     def is_connected(self):
         return self._is_connected
 
-    def run_query2(self, query='', data=None):
-        self._cursor.execute(query, data)
-        self._conexion.commit()
-
-
     def run_query(self, query='', data=None):
- #       try:
-            if self.is_connected():
-                self._cursor.execute(query, data)
-                if query.upper().startswith('SELECT'):
-                    data = self._cursor.fetchall()
-                else:
-                    self._conexion.commit()
- #       except:
-           # print("error")
-           # self._conexion.rollback()
-            return data
+        #       try:
+        if self.is_connected():
+            self._cursor.execute(query, data)
+            if query.upper().startswith('SELECT'):
+                data = self._cursor.fetchall()
+            else:
+                self._conexion.commit()
+        #       except:
+        # print("error")
+        # self._conexion.rollback()
+        return data
 
     def close(self):
         if self.is_connected():

@@ -114,7 +114,7 @@ QFrame {
           <number>0</number>
          </property>
          <item>
-          <widget class="QFrame" name="fme_image_2">
+          <widget class="QFrame" name="fme_image">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -191,7 +191,7 @@ QFrame {
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="lbl_title_3">
+             <widget class="QLabel" name="lbl_card_title">
               <property name="styleSheet">
                <string notr="true">QLabel {
 	margin-top : 12px;
@@ -205,7 +205,7 @@ QFrame {
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="lbl_subtitle_2">
+             <widget class="QLabel" name="lbl_card_subtitle">
               <property name="styleSheet">
                <string notr="true">QLabel {
 	font : 18px &quot;Arial&quot;;
@@ -283,7 +283,7 @@ QFrame {
                 <number>0</number>
                </property>
                <item>
-                <widget class="QPushButton" name="btn_show_items_2">
+                <widget class="QPushButton" name="btn_show_items">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -313,7 +313,7 @@ QPushButton:pressed {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_5">
+                <widget class="QPushButton" name="btn_edit">
                  <property name="minimumSize">
                   <size>
                    <width>40</width>
@@ -354,7 +354,7 @@ QPushButton:hover {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_6">
+                <widget class="QPushButton" name="btn_remove">
                  <property name="minimumSize">
                   <size>
                    <width>40</width>
