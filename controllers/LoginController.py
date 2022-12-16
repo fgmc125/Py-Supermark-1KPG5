@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QDialog
@@ -6,15 +6,16 @@ from PyQt5.uic import loadUi
 
 from mysqlhelper.Conector import Conexion
 
-from controllers.MainWindow import UiMainWindow
-
 
 class LoginController(QDialog):
-    def __init__(self,__application):
+    def __init__(self, __application):
         super(LoginController, self).__init__()
         self.__application = __application
         loadUi('views/LoginView.ui', self)
         self.__setupUiComponents()
+
+        self.tfd_user.setText("admin")
+        self.tfd_password.setText("admin")
 
     def __keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
@@ -29,25 +30,24 @@ class LoginController(QDialog):
         self._connector = Conexion()
         if self._connector.is_connected():
             if self.tfd_user.text():
-                data = self._connector.run_query(
-                    "SELECT contrasenia FROM byesikch2cyefw2pvcqg.usuario WHERE id = '" + self.tfd_user.text() + "'")
-                if data:
-                    if self.tfd_password.text() and data[0][0] == self.tfd_password.text():
-                        self.lbl_info.setStyleSheet(
-                            "QLabel {\n"
+                sql = """SELECT password,is_superuser,is_staff  FROM bhhj3cug6bdknptqdl7k.user_db WHERE username = %s"""
+                data = self.tfd_user.text(),
+                sql_return = self._connector.run_query(sql, data)
+                if sql_return:
+                    if self.tfd_password.text() and sql_return[0][0] == self.tfd_password.text():
+                        self.lbl_info.setStyleSheet("QLabel {\n"
                             "    font : 77 12px \"Arial\";\n"
                             "    color : green;"
-                            "}\n"
-                        )
+                            "}\n")
                         self.lbl_info.setText(" * ¡CORRECTO! Puso bien los datos.")
-                        date_time = str(datetime.datetime.now().strftime('%d/%m/%Y - %H:%M:%S'))
-                        sql = "UPDATE `byesikch2cyefw2pvcqg`.`usuario`" \
-                              " SET `fecha_acceso` = '" + date_time + "' WHERE (`id` = '" + self.tfd_user.text() + "');"
-                        self._connector.run_query(sql)
+                        sql = """UPDATE bhhj3cug6bdknptqdl7k.user_db SET last_login = %s WHERE username = %s"""
+                        data = datetime.now().strftime('%Y-%m-%d %H:%M:%S'), self.tfd_user.text()
+                        self._connector.run_query(sql, data)
                         self.__application.user = self.tfd_user.text()
+                        self.__application.is_superuser = (sql_return[0][1] == 1) if True else False
+                        self.__application.is_staff = (sql_return[0][2] == 1) if True else False
                         self._connector.close()
-                        #self.__application.ui_config(QtWidgets.QMainWindow(), UiMainWindow(self.__application, self))
-                        self.__application.ui_config_without_qwidget("main")
+                        self.__application.ui_config("main")
                     else:
                         self.lbl_info.setStyleSheet(
                             "QLabel {\n"
@@ -85,4 +85,4 @@ class LoginController(QDialog):
         self._connector.close()
 
     def __signup(self):
-        self.__application.ui_config_without_qwidget("signup")
+        self.__application.ui_config("signup")

@@ -1,0 +1,18 @@
+
+
+cat data.txt | sort | uniq -u
+EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+ssh bandit9@bandit.labs.overthewire.org -p 2220
+
+strings data.txt
+G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+ssh bandit10@bandit.labs.overthewire.org -p 2220
+
+cat data.txt | base64 --decode
+6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+ssh bandit11@bandit.labs.overthewire.org -p 2220
+
+nota: [ "mensaje" | rot13 ] convierte en rot13 el mensaje
+cat data.txt | tr A-Za-z N-ZA-Mn-za-m
+JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+ssh bandit12@bandit.labs.overthewire.org -p 2220

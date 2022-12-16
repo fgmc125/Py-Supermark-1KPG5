@@ -1,4 +1,6 @@
 import mysql.connector
+
+
 # pip install mysql-connector-python
 #                  DB_HOST='bsi5brxpk0wz9ygdti6z-mysql.services.clever-cloud.com',
 #                  DB_USER='ulgg0or7rymoucea',
@@ -9,10 +11,10 @@ import mysql.connector
 
 class Conexion:
     def __init__(self,
-                 DB_HOST='byesikch2cyefw2pvcqg-mysql.services.clever-cloud.com',
-                 DB_USER='urplxlscfyqjee1o',
-                 DB_PASS='Fp35RY3YeLEk6Ql0nnXJ',
-                 DB_NAME='byesikch2cyefw2pvcqg',
+                 DB_HOST='bhhj3cug6bdknptqdl7k-mysql.services.clever-cloud.com',
+                 DB_USER='uk8uc4waiyp7kpnd',
+                 DB_PASS='NzF8qVpKG6ClKY0vo6wk',
+                 DB_NAME='bhhj3cug6bdknptqdl7k',
                  DB_PORT='3306'
                  ):
         self._is_connected = False
@@ -27,23 +29,28 @@ class Conexion:
             self._cursor = self._conexion.cursor()
             self._is_connected = True
         except:
-            print("la cosa se jodio")
+            print("Error al conectar a la base de datos")
 
     def is_connected(self):
         return self._is_connected
 
-    def run_query(self, query=''):
-        data = None
-        try:
+    def run_query2(self, query='', data=None):
+        self._cursor.execute(query, data)
+        self._conexion.commit()
+
+
+    def run_query(self, query='', data=None):
+ #       try:
             if self.is_connected():
-                self._cursor.execute(query)
+                self._cursor.execute(query, data)
                 if query.upper().startswith('SELECT'):
                     data = self._cursor.fetchall()
                 else:
                     self._conexion.commit()
-        except:
-            self._conexion.rollback()
-        return data
+ #       except:
+           # print("error")
+           # self._conexion.rollback()
+            return data
 
     def close(self):
         if self.is_connected():
@@ -56,11 +63,10 @@ if __name__ == "__main__":
     consulta = Conexion()
     if consulta.is_connected():
         print("conectado")
-        # if consulta.run_query("SELECT * FROM bsi5brxpk0wz9ygdti6z.users_db WHERE user = 'admin'"):
-        #    print(consulta.run_query("SELECT password FROM bsi5brxpk0wz9ygdti6z.users_db WHERE type = '0'"))
-        consulta._cursor.execute("SHOW DATABASEs")
+        consulta._cursor.execute("SHOW DATABASES")
         for db in consulta._cursor:
             print(db)
         consulta.close()
 
-    if not consulta.is_connected(): print("cerrada")
+    if not consulta.is_connected():
+        print("cerrada")

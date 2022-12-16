@@ -1,5 +1,16 @@
 <RCC>
   <qresource prefix="icon">
+    <file>assets/icon/square-pen.png</file>
+    <file>assets/icon/square-xmark.png</file>
+    <file>assets/icon/list.png</file>
+    <file>assets/icon/list2.png</file>
+    <file>assets/icon/table-cells-large.png</file>
+    <file>assets/icon/table-cells-large2.png</file>
+    <file>assets/icon/users.png</file>
+    <file>assets/icon/users2.png</file>
+    <file>assets/icon/cart-shopping.png</file>
+    <file>assets/icon/cart-shopping2.png</file>
+    <file>assets/icon/exit.png</file>
     <file>assets/icon/magnifying-glass.png</file>
     <file>assets/icon/circle-user2.png</file>
     <file>assets/icon/house2.png</file>
