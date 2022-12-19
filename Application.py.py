@@ -64,7 +64,6 @@ class Application:
             if ui:
                 ui.close()
 
-
     def ui_config(self, __ui):
         ui = self.__ui
         if __ui == "login":

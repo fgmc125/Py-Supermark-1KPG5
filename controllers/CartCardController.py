@@ -8,17 +8,17 @@ from mysqlhelper.Conector import Conexion
 
 
 class CartCardController(QtWidgets.QWidget):
-    def __init__(self, main_controller, category, product_data):
+    def __init__(self, main_controller, user):
         super(CartCardController, self).__init__()
         loadUi('views/CardView.ui', self)
         self.__main_controller = main_controller
-        self.__product_data = product_data
-        self.__category = category
+        self.__product_data = None
+        self.__user = user
 
         self.__setupUiComponents()
 
     def __setupUiComponents(self):
-        if self.__main_controller._application.is_staff:
+        if not self.__main_controller._application.is_staff:
             self.btn_a = QtWidgets.QPushButton(self.frame_10)
             self.btn_a.setMinimumSize(QtCore.QSize(40, 40))
             self.btn_a.setMaximumSize(QtCore.QSize(40, 40))

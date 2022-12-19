@@ -1024,14 +1024,14 @@ QPushButton:hover {
 	border-radius: 5px;
 }
 
-#btn_item_var_0:pressed, #btn_item_var_1:pressed {
+#btn_item_var_0:pressed, #btn_item_var_1:pressed, #btn_item_var_2 {
 	background-color : transparent;
 	color : #42B72A;
 	border: 1px solid #42B72A;
 	border-radius: 5px;
 }
 
-#btn_item_var_0, #btn_item_var_1 {
+#btn_item_var_0, #btn_item_var_1, #btn_item_var_2 {
 	background-color : #42B72A;
 	padding-left : 10px;
 	padding-right : 10px;

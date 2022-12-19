@@ -96,6 +96,12 @@ class MainController(QMainWindow):
             self.horizontalLayout_10.addWidget(self.btn_item_var_0)
             self.btn_item_var_0.setText(_translate("MainWindow", "Nuevo producto"))
             self.frame_3.findChild(QtWidgets.QPushButton, "btn_item_var_0").clicked.connect(self.new_product)
+
+            self.btn_item_var_2 = QtWidgets.QPushButton(self.frame_3)
+            self.btn_item_var_2.setObjectName("btn_item_var_2")
+            self.horizontalLayout_10.addWidget(self.btn_item_var_2)
+            self.btn_item_var_2.setText(_translate("MainWindow", "Recargar DB"))
+            self.frame_3.findChild(QtWidgets.QPushButton, "btn_item_var_2").clicked.connect(self.refresh)
         else:
             pass
 
@@ -230,3 +236,8 @@ class MainController(QMainWindow):
 
     def ui_config_modal(self, ui_modal, id=None):
         self._application.ui_config_modal(ui_modal, id)
+
+    def refresh(self):
+        self._application.load_data()
+        self._load_content_area()
+
