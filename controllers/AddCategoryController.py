@@ -62,7 +62,7 @@ class AddCategoryController(QDialog):
                            (self.tfd_image.text()) if self.tfd_image.text() else None, \
                            self.ted_description.toPlainText()
 
-                    self._connector.run_query2(query=sql, data=data)
+                    self._connector.run_query(query=sql, data=data)
                     self._connector.close()
             else:
                 self.lbl_info.setStyleSheet("QLabel {\n"

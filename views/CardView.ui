@@ -313,7 +313,7 @@ QPushButton:pressed {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btn_edit">
+                <widget class="QPushButton" name="btn_a">
                  <property name="minimumSize">
                   <size>
                    <width>40</width>
@@ -354,7 +354,7 @@ QPushButton:hover {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btn_remove">
+                <widget class="QPushButton" name="btn_b">
                  <property name="minimumSize">
                   <size>
                    <width>40</width>

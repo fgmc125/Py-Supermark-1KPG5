@@ -111,7 +111,7 @@ class AddProductController(QDialog):
                            True, \
                            current_category
 
-                    self._connector.run_query2(query=sql, data=data)
+                    self._connector.run_query(query=sql, data=data)
                     self._connector.close()
             else:
                 self.lbl_info.setStyleSheet("QLabel {\n"

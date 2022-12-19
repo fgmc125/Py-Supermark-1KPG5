@@ -1,5 +1,9 @@
+----------------------------------------------------------------------------------------------------
+Librerias necesarias para usar el proyecto:
 pip install PyQt5
 pip install mysql-connector-python
+----------------------------------------------------------------------------------------------------
+
 
 #                  DB_HOST='bsi5brxpk0wz9ygdti6z-mysql.services.clever-cloud.com',
 #                  DB_USER='ulgg0or7rymoucea',
@@ -23,3 +27,42 @@ pyrcc5 views/assets.qrc -o views/assets.py
         self.card = CardController()
         self.card.setObjectName("card")
         self.horizontalLayout_9.addWidget(self.card)
+
+
+----------------------------------------------------------------------------------------------------
+https://autoclick.uptodown.com/windows/descargar
+https://jsonformatter.curiousconcept.com/
+
+
+function download(content, fileName, contentType) {
+		  const a = document.createElement("a");
+		  const file = new Blob([content], { type: contentType });
+		  a.href = URL.createObjectURL(file);
+		  a.download = fileName;
+		  a.click();
+		}
+
+let product = document.querySelectorAll(".vtex-search-result-3-x-galleryItem.vtex-search-result-3-x-galleryItem--normal.vtex-search-result-3-x-galleryItem--default.pa4");
+let list = []
+for (let i = 0; i < product.length; i++){
+	if (product[i].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].childElementCount == 1){	src = product[i].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].src
+	}
+	else {
+	src = ""
+}
+    list.push(
+       {
+	"name": product[i].children[0].children[0].children[0].children[0].children[2].textContent,
+	"category" : "Almacen",
+    	"family": "",
+    	"brand" : product[i].children[0].children[0].children[0].children[0].children[1].textContent,
+	"description": "Sin descipcion",
+	"discount" : product[i].children[0].children[0].children[0].children[0].children[3].textContent,
+	"price": product[i].children[0].children[0].children[0].children[0].children[4].textContent,
+	"price_per" : product[i].children[0].children[0].children[0].children[0].children[6].textContent,
+	"image": src
+}
+    )
+}
+
+download(JSON.stringify(list), "data.json", "text/plain");

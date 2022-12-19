@@ -1,8 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 from PyQt5.uic import loadUi
 
-from controllers.CardController import CardController
+from controllers.CategoryCardController import CategoryCardController
+from controllers.ProductCardController import ProductCardController
 from mysqlhelper.Conector import Conexion
 from views.assets import *
 
@@ -15,7 +16,9 @@ class MainController(QMainWindow):
         self.__setupUiComponents()
         self.__isToggler = True
         self._connector = None
+
         self.category_data = None
+        self.category_cards = None
 
     def __setupUiComponents(self):
         if self.__application.is_staff:
@@ -96,7 +99,6 @@ class MainController(QMainWindow):
 
         self.__load_content_area()
 
-
     def new_product(self):
         self.__application.ui_config_modal("new_product")
 
@@ -115,7 +117,7 @@ class MainController(QMainWindow):
             for qwidget in data:
                 qwidget.deleteLater()
         elif name == "Cards":
-            data = self.scrollAreaWidgetContents.findChildren(CardController)
+            data = self.scrollAreaWidgetContents.findChildren(CategoryCardController)
             for qwidget in data:
                 qwidget.deleteLater()
             data = self.scrollAreaWidgetContents.findChildren(QtWidgets.QFrame)
@@ -128,16 +130,6 @@ class MainController(QMainWindow):
             sql = "SELECT id, name FROM bhhj3cug6bdknptqdl7k.category_db"
             self.category_data = self._connector.run_query(sql)
             self._connector.close()
-            if self.category_data:
-                pass
-        else:
-            pass
-
-    def __add_card(self):
-        pass
-
-    def __remove_cards(self):
-        pass
 
     def __load_content_area(self):
         self.__load()
@@ -152,8 +144,31 @@ class MainController(QMainWindow):
         horizontal_layout_0.setObjectName("horizontal_layout_0")
 
         for category in self.category_data:
-            card = CardController(category=category)
+            card = CategoryCardController(category=category, main_controller=self)
             card.setObjectName(str(category[1]))
             horizontal_layout_0.addWidget(card)
 
         self.verticalLayout_13.addWidget(frame)
+
+        print(self.geometry().width())
+
+    def _reformat_content(self, product, __product_data):
+        self.__clean(name="Cards")
+        self.lbl_title.setText(" CATEGORÍAS / " + str(product).upper())
+
+        frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
+        frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        frame.setObjectName("frame_0")
+
+        horizontal_layout_0 = QtWidgets.QHBoxLayout(frame)
+        horizontal_layout_0.setContentsMargins(0, 0, 0, 0)
+        horizontal_layout_0.setObjectName("horizontal_layout_0")
+
+        for product in __product_data:
+            card = ProductCardController(product=product, main_controller=self)
+            card.setObjectName(str(product[1]))
+            horizontal_layout_0.addWidget(card)
+
+        self.verticalLayout_13.addWidget(frame)
+
