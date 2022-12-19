@@ -99,7 +99,7 @@ class EditProductController(QDialog):
                             if category[1] == self.cbx_category.currentText():
                                 current_category = category[0]
                                 break
-                        sql = "UPDATE bhhj3cug6bdknptqdl7k.category_db  SET " \
+                        sql = "UPDATE bhhj3cug6bdknptqdl7k.product_db  SET " \
                               "name = '" + str(self.tfd_name.text().title())\
                               + "', image = '" + ((self.tfd_image.text()) if self.tfd_image.text() else 'NULL') \
                               + "', price = '" + str(self.dsb_price.value()) \
@@ -119,7 +119,7 @@ class EditProductController(QDialog):
                         if category[1] == self.cbx_category.currentText():
                             current_category = category[0]
                             break
-                    sql = "UPDATE bhhj3cug6bdknptqdl7k.category_db  SET " \
+                    sql = "UPDATE bhhj3cug6bdknptqdl7k.product_db  SET " \
                           "name = '" + str(self.tfd_name.text().title()) \
                           + "', image = '" + ((self.tfd_image.text()) if self.tfd_image.text() else 'NULL') \
                           + "', price = '" + str(self.dsb_price.value()) \
