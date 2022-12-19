@@ -31,7 +31,14 @@ class EditProductController(QDialog):
         self.dsb_cost.setValue(0)
         self.dsb_price.setValue(float(self.__product[0][3]))
         self.cbx_supplier.setCurrentText(self.supplier_data[0][1])
-        self.cbx_category.setCurrentText(self.category_data[0][1])
+
+        current_category = None
+        for category in self.category_data:
+            if category[0] == self.__product[0][11]:
+                current_category = category[1]
+                break
+
+        self.cbx_category.setCurrentText(current_category)
 
         self.btn_accept_and_new.deleteLater()
         self.btn_accept.clicked.connect(self.__accept)
@@ -95,12 +102,12 @@ class EditProductController(QDialog):
                         sql = "UPDATE bhhj3cug6bdknptqdl7k.category_db  SET " \
                               "name = '" + str(self.tfd_name.text().title())\
                               + "', image = '" + ((self.tfd_image.text()) if self.tfd_image.text() else 'NULL') \
-                              + "', price = '" + self.dsb_price.value() \
-                              + "', current = '" + self.sbx_current.value() \
-                              + "', minimum = '" + self.sbx_min.value() \
-                              + "', maximum = '" + self.sbx_max.value() \
+                              + "', price = '" + str(self.dsb_price.value()) \
+                              + "', current = '" + str(self.sbx_current.value()) \
+                              + "', minimum = '" + str(self.sbx_min.value()) \
+                              + "', maximum = '" + str(self.sbx_max.value()) \
                               + "', updated = '" + datetime.now().strftime('%Y-%m-%d %H:%M:%S') \
-                              + "', family_id = '" + current_category \
+                              + "', family_id = '" + str(current_category) \
                               + "', description = '" + self.ted_description.toPlainText() \
                               + "' WHERE id = '" + str(self.__product[0][0]) + "'"
 
@@ -115,12 +122,12 @@ class EditProductController(QDialog):
                     sql = "UPDATE bhhj3cug6bdknptqdl7k.category_db  SET " \
                           "name = '" + str(self.tfd_name.text().title()) \
                           + "', image = '" + ((self.tfd_image.text()) if self.tfd_image.text() else 'NULL') \
-                          + "', price = '" + self.dsb_price.value() \
-                          + "', current = '" + self.sbx_current.value() \
-                          + "', minimum = '" + self.sbx_min.value() \
-                          + "', maximum = '" + self.sbx_max.value() \
+                          + "', price = '" + str(self.dsb_price.value()) \
+                          + "', current = '" + str(self.sbx_current.value()) \
+                          + "', minimum = '" + str(self.sbx_min.value()) \
+                          + "', maximum = '" + str(self.sbx_max.value()) \
                           + "', updated = '" + datetime.now().strftime('%Y-%m-%d %H:%M:%S') \
-                          + "', family_id = '" + current_category \
+                          + "', family_id = '" + str(current_category) \
                           + "', description = '" + self.ted_description.toPlainText() \
                           + "' WHERE id = '" + str(self.__product[0][0]) + "'"
 
