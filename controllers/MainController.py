@@ -4,6 +4,7 @@ from PyQt5.uic import loadUi
 
 from controllers.CategoryCardController import CategoryCardController
 from controllers.ProductCardController import ProductCardController
+from controllers.ProductController import ProductController
 from mysqlhelper.Conector import Conexion
 from views.assets import *
 
@@ -97,7 +98,7 @@ class MainController(QMainWindow):
         self.fme_lbl_title.setStyleSheet("#fme_lbl_title { background-image : url(:/icon/assets/icon/store2.png);}")
         self.lbl_title.setText(" CATEGORÍAS")
 
-        self.__load_content_area()
+        self._load_content_area()
 
     def new_product(self):
         self.__application.ui_config_modal("new_product")
@@ -131,44 +132,95 @@ class MainController(QMainWindow):
             self.category_data = self._connector.run_query(sql)
             self._connector.close()
 
-    def __load_content_area(self):
-        self.__load()
+    def _load_content_area(self):
         self.__clean(name="Cards")
+
+        cnt_cards_for_row = int((self.geometry().width() - 86) / 239)
+        categories_split = [self.__application.categories_data[i:i + cnt_cards_for_row] for i in
+                            range(0, len(self.__application.categories_data), cnt_cards_for_row)]
+        cnt = 1  # solo para debug
+        for x in range(len(categories_split)):
+            frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
+            frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+            frame.setFrameShadow(QtWidgets.QFrame.Raised)
+            frame.setObjectName("frame_" + str(x))
+
+            horizontal_layout = QtWidgets.QHBoxLayout(frame)
+            horizontal_layout.setContentsMargins(0, 0, 0, 0)
+            horizontal_layout.setObjectName("horizontal_layout_" + str(x))
+
+            for category in categories_split[x]:
+                card = CategoryCardController(category=category,
+                                              main_controller=self,
+                                              product_data=self.__application.products_data[category[1]]
+                                              )
+                card.setObjectName(str(category[1]))
+                horizontal_layout.addWidget(card)
+
+                print("DEBUG: %", int(cnt * 100 / len(self.__application.categories_data)))  # solo para debug
+                cnt += 1  # solo para debug
+
+            horizontal_layout.addItem(
+                QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+            self.verticalLayout_13.addWidget(frame)
+
+        self.verticalLayout_13.addItem(
+            QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
+
+
+    def _reformat_content(self, product_name, __product_data):
+        self.__clean(name="Cards")
+        self.lbl_title.setText(" CATEGORÍAS / " + str(product_name).upper())
+
+        cnt_cards_for_row = int((self.geometry().width() - 86) / 239)
+        products_split = [__product_data[i:i + cnt_cards_for_row] for i in
+                          range(0, len(list(__product_data)), cnt_cards_for_row)]
+        cnt = 1
+
+        for x in range(len(products_split)):
+            frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
+            frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+            frame.setFrameShadow(QtWidgets.QFrame.Raised)
+            frame.setObjectName("frame_" + str(x))
+
+            horizontal_layout = QtWidgets.QHBoxLayout(frame)
+            horizontal_layout.setContentsMargins(0, 0, 0, 0)
+            horizontal_layout.setObjectName("horizontal_layout_" + str(x))
+
+            for product in products_split[x]:
+                card = ProductCardController(product=product, main_controller=self)
+                card.setObjectName(str(product[1]))
+                horizontal_layout.addWidget(card)
+
+                print("DEBUG: %", int(cnt * 100 / len(__product_data)))
+                cnt += 1
+
+            horizontal_layout.addItem(
+                QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+            self.verticalLayout_13.addWidget(frame)
+
+        self.verticalLayout_13.addItem(
+            QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
+
+    def _load_product_view(self, product_data, category):
+        self.__clean(name="Cards")
+        self.lbl_title.setText(self.lbl_title.text() + " / " + str(product_data[1]).upper())
+
         frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
         frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        frame.setObjectName("frame_0")
+        frame.setObjectName("frame_00")
 
-        horizontal_layout_0 = QtWidgets.QHBoxLayout(frame)
-        horizontal_layout_0.setContentsMargins(0, 0, 0, 0)
-        horizontal_layout_0.setObjectName("horizontal_layout_0")
+        horizontal_layout = QtWidgets.QHBoxLayout(frame)
+        horizontal_layout.setContentsMargins(0, 0, 0, 0)
+        horizontal_layout.setObjectName("horizontal_layout_00")
 
-        for category in self.category_data:
-            card = CategoryCardController(category=category, main_controller=self)
-            card.setObjectName(str(category[1]))
-            horizontal_layout_0.addWidget(card)
-
-        self.verticalLayout_13.addWidget(frame)
-
-        print(self.geometry().width())
-
-    def _reformat_content(self, product, __product_data):
-        self.__clean(name="Cards")
-        self.lbl_title.setText(" CATEGORÍAS / " + str(product).upper())
-
-        frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
-        frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        frame.setObjectName("frame_0")
-
-        horizontal_layout_0 = QtWidgets.QHBoxLayout(frame)
-        horizontal_layout_0.setContentsMargins(0, 0, 0, 0)
-        horizontal_layout_0.setObjectName("horizontal_layout_0")
-
-        for product in __product_data:
-            card = ProductCardController(product=product, main_controller=self)
-            card.setObjectName(str(product[1]))
-            horizontal_layout_0.addWidget(card)
+        card = ProductController(main_controller=self, product=product_data, category=category)
+        card.setObjectName(str(product_data[1]))
+        horizontal_layout.addWidget(card)
 
         self.verticalLayout_13.addWidget(frame)
+        self.verticalLayout_13.addItem(QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
 
+    def ui_config_modal(self, ui_modal, id=None):
+        self.__application.ui_config_modal(ui_modal, id)

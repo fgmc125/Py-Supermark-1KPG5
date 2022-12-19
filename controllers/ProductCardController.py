@@ -16,18 +16,16 @@ class ProductCardController(QtWidgets.QWidget):
         self.__setupUiComponents()
 
     def __setupUiComponents(self):
-
-        print(self.__product_data)
         labels = self.findChildren(QtWidgets.QLabel)
-        labels[0].setText("$ " + str(self.__product_data[0][3]).replace(',', '.'))
-        labels[1].setText(self.__product_data[0][1])
+        labels[0].setText("$ " + str(self.__product_data[3]).replace(',', '.'))
+        labels[1].setText(self.__product_data[1])
 
         self.btn_show_items.setText("ver más")
-        self.btn_show_items.clicked.connect(self.__show_items)
+        self.btn_show_items.clicked.connect(self.__show)
 
 
-    def __show_items(self):
-        pass #self.__main_controller._reformat_content(self.__category[1], self.__product_data)
+    def __show(self):
+        self.__main_controller._load_product_view(category="ñam ñam", product_data=self.__product_data)
 
     def __remove(self):
         pass

@@ -3,19 +3,28 @@ from PyQt5.QtWidgets import QApplication
 
 from controllers.AddCategoryController import AddCategoryController
 from controllers.AddProductController import AddProductController
+from controllers.AlertController import AlertController
 from controllers.LoginController import LoginController
 from controllers.SignupController import SignupController
 from controllers.MainController import MainController
 
 import sys
 
+from mysqlhelper.Conector import Conexion
+
 
 class Application:
     def __init__(self):
-        self.TITTLE = "v0.20221215"
+        self.__connector = None
+        self.TITTLE = "v0.20221219"
+
         self.user = ""
         self.is_staff = None
         self.is_superuser = None
+
+        self.categories_data = None
+        self.products_data = dict()
+        self.load_data()
 
         useGUI = not '-no-gui' in sys.argv
         self.__qapplication = QApplication(sys.argv) if useGUI else QCoreApplication(sys.argv)
@@ -27,7 +36,7 @@ class Application:
         self.ui_config("login")
         return self.__qapplication.exec_()
 
-    def ui_config_modal(self, __ui_modal):
+    def ui_config_modal(self, __ui_modal, __id=None):
         ui = self.__ui_modal
         if __ui_modal:
             if __ui_modal == "new_product":
@@ -36,6 +45,10 @@ class Application:
                 self.__ui_modal = AddCategoryController(self)
             elif __ui_modal == "new_user":
                 self.__ui_modal = AddCategoryController(self)
+            elif __ui_modal == "remove_product":
+                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.product_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
+            elif __ui_modal == "remove_category":
+                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.category_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
 
             if ui:
                 ui.close()
@@ -44,7 +57,6 @@ class Application:
         else:
             if ui:
                 ui.close()
-
 
 
     def ui_config(self, __ui):
@@ -62,6 +74,29 @@ class Application:
 
     def getTitle(self):
         return self.TITTLE
+
+    def load_data(self):
+        self.__connector = Conexion()
+        print("DEBUG: Iniciando carga de datos:")
+        print("DEBUG: 1 de 2: Categorías")
+        if self.__connector.is_connected():
+            sql = "SELECT id, name FROM bhhj3cug6bdknptqdl7k.category_db"
+            self.categories_data = self.__connector.run_query(sql)
+            #self._connector.close()
+
+        print("DEBUG: 100%")
+        print("DEBUG: 2 de 2: productos")
+        cnt = 1
+        for category in self.categories_data:
+            if self.__connector.is_connected():
+                sql = """SELECT * FROM bhhj3cug6bdknptqdl7k.product_db WHERE family_id = '%s'"""
+                data = [category[0]]
+                self.products_data[category[1]] = self.__connector.run_query(query=sql, data=data)
+
+                print("DEBUG: %", int(cnt*100/len(self.categories_data)))
+                cnt +=1
+        print("DEBUG: Fin de carga de datos")
+        self.__connector.close()
 
 
 if __name__ == '__main__':

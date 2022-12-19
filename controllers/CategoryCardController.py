@@ -8,23 +8,15 @@ from mysqlhelper.Conector import Conexion
 
 
 class CategoryCardController(QtWidgets.QWidget):
-    def __init__(self, main_controller, category):
+    def __init__(self, main_controller, category, product_data):
         super(CategoryCardController, self).__init__()
         loadUi('views/CardView.ui', self)
         self.__main_controller = main_controller
-        self.__product_data = None
+        self.__product_data = product_data
         self.__category = category
         self.__setupUiComponents()
 
     def __setupUiComponents(self):
-        self._connector = Conexion()
-        if self._connector.is_connected():
-            sql = """SELECT * FROM bhhj3cug6bdknptqdl7k.product_db WHERE family_id = '%s'"""
-            data = [self.__category[0]]
-            self.__product_data = self._connector.run_query(query=sql, data=data)
-
-        self._connector.close()
-
         labels = self.findChildren(QtWidgets.QLabel)
         labels[0].setText(self.__category[1])
         labels[1].setText(str(len(self.__product_data)) + " artículos")

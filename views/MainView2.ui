@@ -1316,9 +1316,9 @@ QScrollBar {
                    <property name="geometry">
                     <rect>
                      <x>0</x>
-                     <y>0</y>
-                     <width>812</width>
-                     <height>313</height>
+                     <y>-220</y>
+                     <width>791</width>
+                     <height>533</height>
                     </rect>
                    </property>
                    <property name="styleSheet">
@@ -1351,22 +1351,105 @@ QPushButton {
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_11">
+                       <item>
+                        <widget class="QFrame" name="frame_8">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QFrame" name="frame_7">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_6">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_10">
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_18">
                        <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
                         <number>0</number>
                        </property>
                        <property name="rightMargin">
                         <number>0</number>
                        </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
+                       <item>
+                        <widget class="QTextEdit" name="textEdit">
+                         <property name="styleSheet">
+                          <string notr="true">QTextEdit {
+	background-color: transparent;
+	border : 1px solid;
+	border-color: #CED7E6;
+	border-radius: 7px;
+}</string>
+                         </property>
+                        </widget>
+                       </item>
                        <item>
                         <widget class="QPushButton" name="pushButton_3">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+	color : #FFFFFF;
+	border-style : solid;
+	border-radius: 5px;
+	min-height : 40px;
+	font : 77 18px &quot;Arial&quot;;
+	background-color : #42B72A;
+	padding-left : 20px;
+	padding-right : 20px;
+}
+
+QPushButton:hover {
+	border: 1px solid #FFF;
+	border-radius: 5px;
+}
+
+QPushButton:pressed {
+	background-color : transparent;
+	color : #42B72A;
+	border: 1px solid #42B72A;
+	border-radius: 5px;
+}
+
+</string>
+                         </property>
                          <property name="text">
-                          <string>PushButton</string>
+                          <string>Comentar</string>
                          </property>
                         </widget>
                        </item>
