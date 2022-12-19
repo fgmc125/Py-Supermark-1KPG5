@@ -70,11 +70,14 @@ class MainController(QMainWindow):
             self.__isToggler = True
 
     def __action_button_1(self):
+        self.__clean()
+        self.__clean(name="Cards")
         self.fme_lbl_title.setStyleSheet(self.btn_1_stylesheet)
         self.lbl_title.setText(self.btn_1_title)
 
     def __show_home(self):
         self.__clean()
+        self.__clean(name="Cards")
         self.fme_lbl_title.setStyleSheet("#fme_lbl_title { background-image : url(:/icon/assets/icon/house2.png);}")
         self.lbl_title.setText(" INICIO")
 
