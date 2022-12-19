@@ -72,7 +72,7 @@ class SignupController(QDialog):
                                self.tfd_email.text(), \
                                datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-                        self._connector.run_query2(query=sql, data=data)
+                        self._connector.run_query(query=sql, data=data)
                         self.__application.user = self.tfd_user.text()
                         self._connector.close()
                         self.__application.ui_config("login")
