@@ -24,8 +24,13 @@ class ProductController(QtWidgets.QWidget):
         self.btn_add_to_cart.clicked.connect(self.__show_items)
         self.btn_buy.clicked.connect(self.__show_items)
         self.btn_send_message.clicked.connect(self.__show_items)
-        self.btn_remove.clicked.connect(self.__remove)
 
+        if self.__main_controller._application.is_staff:
+            self.btn_edit.clicked.connect(self.__edit)
+            self.btn_remove.clicked.connect(self.__remove)
+        else:
+            self.btn_edit.deleteLater()
+            self.btn_remove.deleteLater()
 
 
     def __show_items(self):
@@ -36,4 +41,4 @@ class ProductController(QtWidgets.QWidget):
         self.__main_controller._load_content_area()
 
     def __edit(self):
-        pass
+        self.__main_controller.ui_config_modal("edit_product", id=self.__product_data[0])

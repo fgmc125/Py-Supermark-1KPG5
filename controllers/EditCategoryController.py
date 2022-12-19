@@ -42,7 +42,6 @@ class EditCategoryController(QDialog):
 
     def __save(self):
         alert = None
-        print("nombre de la categoria:", self.__category[0][1])
         if self.tfd_name.text() != "" and self.ted_description.toPlainText() != "":
             self._connector = Conexion()
             if self._connector.is_connected():

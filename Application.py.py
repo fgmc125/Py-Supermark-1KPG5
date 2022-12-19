@@ -5,6 +5,7 @@ from controllers.AddCategoryController import AddCategoryController
 from controllers.AddProductController import AddProductController
 from controllers.AlertController import AlertController
 from controllers.EditCategoryController import EditCategoryController
+from controllers.EditProductController import EditProductController
 from controllers.LoginController import LoginController
 from controllers.SignupController import SignupController
 from controllers.MainController import MainController
@@ -52,6 +53,9 @@ class Application:
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.category_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
             elif __ui_modal == "edit_category":
                 self.__ui_modal = EditCategoryController(self, category=__id)
+            elif __ui_modal == "edit_product":
+                self.__ui_modal = EditProductController(self, product=__id)
+
             if ui:
                 ui.close()
             self.__ui_modal.setModal(True)

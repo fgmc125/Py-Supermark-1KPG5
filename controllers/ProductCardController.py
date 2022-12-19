@@ -101,4 +101,4 @@ class ProductCardController(QtWidgets.QWidget):
         self.__main_controller._load_content_area()
 
     def __edit(self):
-        pass
+        self.__main_controller.ui_config_modal("edit_product", id=self.__product_data[0])
