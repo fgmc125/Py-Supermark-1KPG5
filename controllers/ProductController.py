@@ -32,8 +32,7 @@ class ProductController(QtWidgets.QWidget):
         pass #self.__main_controller._reformat_content(self.__category[1], self.__product_data)
 
     def __remove(self):
-        print("id a borrar: ", self.__product_data[0])
-        self.__main_controller.ui_config_modal(ui_modal='remove_product', id=self.__product_data[0])
+        self.__main_controller.ui_config_modal(ui_modal='remove_product', __id=self.__product_data[0])
         self.__main_controller._load_content_area()
 
     def __edit(self):

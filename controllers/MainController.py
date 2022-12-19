@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 from PyQt5.uic import loadUi
 
@@ -12,7 +13,7 @@ from views.assets import *
 class MainController(QMainWindow):
     def __init__(self, __application):
         super(MainController, self).__init__()
-        self.__application = __application
+        self._application = __application
         loadUi('views/MainView.ui', self)
         self.__setupUiComponents()
         self.__isToggler = True
@@ -22,7 +23,7 @@ class MainController(QMainWindow):
         self.category_cards = None
 
     def __setupUiComponents(self):
-        if self.__application.is_staff:
+        if self._application.is_staff:
             icon = QtGui.QIcon()
             icon.addPixmap(QtGui.QPixmap(":/icon/assets/icon/users.png"),
                            QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -39,9 +40,9 @@ class MainController(QMainWindow):
             self.btn_1_stylesheet = "#fme_lbl_title { background-image : url(:/icon/assets/icon/cart-shopping2.png);}"
             self.btn_1_title = " MI CARRITO"
 
-        self.btn_username.setText(self.__application.user)
+        self.btn_username.setText(self._application.user)
 
-        self.lbl_version.setText(self.__application.getTitle())
+        self.lbl_version.setText(self._application.getTitle())
         self.btn_toggler.clicked.connect(self.__toggler_action)
         self.fme_aside.findChild(QtWidgets.QPushButton, "btn_0").clicked.connect(self.__show_home)
         self.fme_aside.findChild(QtWidgets.QPushButton, "btn_1").clicked.connect(self.__action_button_1)
@@ -79,7 +80,7 @@ class MainController(QMainWindow):
 
     def __show_categories(self):
         _translate = QtCore.QCoreApplication.translate
-        if self.__application.is_staff:
+        if self._application.is_staff:
             self.__clean()
             self.btn_item_var_1 = QtWidgets.QPushButton(self.frame_3)
             self.btn_item_var_1.setObjectName("btn_item_var_1")
@@ -101,16 +102,16 @@ class MainController(QMainWindow):
         self._load_content_area()
 
     def new_product(self):
-        self.__application.ui_config_modal("new_product")
+        self._application.ui_config_modal("new_product")
 
     def new_category(self):
-        self.__application.ui_config_modal("new_category")
+        self._application.ui_config_modal("new_category")
 
     def __logout(self):
-        self.__application.user = ""
-        self.__application.is_superuser = False
-        self.__application.is_staff = False
-        self.__application.ui_config("login")
+        self._application.user = ""
+        self._application.is_superuser = False
+        self._application.is_staff = False
+        self._application.ui_config("login")
 
     def __clean(self, name="QTableWidget"):
         if name == "QTableWidget":
@@ -118,6 +119,9 @@ class MainController(QMainWindow):
             for qwidget in data:
                 qwidget.deleteLater()
         elif name == "Cards":
+            data = self.scrollAreaWidgetContents.findChildren(QIcon)
+            for qwidget in data:
+                qwidget.deleteLater()
             data = self.scrollAreaWidgetContents.findChildren(CategoryCardController)
             for qwidget in data:
                 qwidget.deleteLater()
@@ -136,8 +140,8 @@ class MainController(QMainWindow):
         self.__clean(name="Cards")
 
         cnt_cards_for_row = int((self.geometry().width() - 86) / 239)
-        categories_split = [self.__application.categories_data[i:i + cnt_cards_for_row] for i in
-                            range(0, len(self.__application.categories_data), cnt_cards_for_row)]
+        categories_split = [self._application.categories_data[i:i + cnt_cards_for_row] for i in
+                            range(0, len(self._application.categories_data), cnt_cards_for_row)]
         cnt = 1  # solo para debug
         for x in range(len(categories_split)):
             frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
@@ -152,12 +156,12 @@ class MainController(QMainWindow):
             for category in categories_split[x]:
                 card = CategoryCardController(category=category,
                                               main_controller=self,
-                                              product_data=self.__application.products_data[category[1]]
+                                              product_data=self._application.products_data[category[1]]
                                               )
                 card.setObjectName(str(category[1]))
                 horizontal_layout.addWidget(card)
 
-                print("DEBUG: %", int(cnt * 100 / len(self.__application.categories_data)))  # solo para debug
+                print("DEBUG: %", int(cnt * 100 / len(self._application.categories_data)))  # solo para debug
                 cnt += 1  # solo para debug
 
             horizontal_layout.addItem(
@@ -166,7 +170,6 @@ class MainController(QMainWindow):
 
         self.verticalLayout_13.addItem(
             QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
-
 
     def _reformat_content(self, product_name, __product_data):
         self.__clean(name="Cards")
@@ -223,4 +226,4 @@ class MainController(QMainWindow):
         self.verticalLayout_13.addItem(QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
 
     def ui_config_modal(self, ui_modal, id=None):
-        self.__application.ui_config_modal(ui_modal, id)
+        self._application.ui_config_modal(ui_modal, id)

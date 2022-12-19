@@ -1,8 +1,9 @@
 from datetime import datetime
 
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog
 from PyQt5.uic import loadUi
+
 
 from mysqlhelper.Conector import Conexion
 

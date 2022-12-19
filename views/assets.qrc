@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icon">
+    <file>assets/icon/square-pen1.png</file>
+    <file>assets/icon/square-xmark1.png</file>
     <file>assets/icon/square-pen.png</file>
     <file>assets/icon/square-xmark.png</file>
     <file>assets/icon/list.png</file>

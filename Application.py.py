@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QApplication
 from controllers.AddCategoryController import AddCategoryController
 from controllers.AddProductController import AddProductController
 from controllers.AlertController import AlertController
+from controllers.EditCategoryController import EditCategoryController
 from controllers.LoginController import LoginController
 from controllers.SignupController import SignupController
 from controllers.MainController import MainController
@@ -49,7 +50,8 @@ class Application:
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.product_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
             elif __ui_modal == "remove_category":
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.category_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
-
+            elif __ui_modal == "edit_category":
+                self.__ui_modal = EditCategoryController(self, category=__id)
             if ui:
                 ui.close()
             self.__ui_modal.setModal(True)
@@ -80,7 +82,7 @@ class Application:
         print("DEBUG: Iniciando carga de datos:")
         print("DEBUG: 1 de 2: Categorías")
         if self.__connector.is_connected():
-            sql = "SELECT id, name FROM bhhj3cug6bdknptqdl7k.category_db"
+            sql = "SELECT * FROM bhhj3cug6bdknptqdl7k.category_db"
             self.categories_data = self.__connector.run_query(sql)
             #self._connector.close()
 

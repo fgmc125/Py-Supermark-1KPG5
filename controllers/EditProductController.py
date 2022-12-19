@@ -7,17 +7,24 @@ from PyQt5.uic import loadUi
 from mysqlhelper.Conector import Conexion
 
 
-class AddProductController(QDialog):
-    def __init__(self, __application):
-        super(AddProductController, self).__init__()
+class EditProductController(QDialog):
+    def __init__(self, __application, product):
+        super(EditProductController, self).__init__()
         self.__application = __application
         loadUi('views/AddProductView.ui', self)
         self.__setupUiComponents()
-        self.category_data = None
+        self.__product = product
         self.supplier_data = [("1", "General")]
         self.__load()
 
     def __setupUiComponents(self):
+        self.__load3()
+
+        self.tfd_name.setText(str(self.__category[0][1]))
+        self.ted_description.setPlainText(self.__category[0][3])
+        (self.__category[2]) if self.tfd_image.setText(self.__category[0][2]) else self.tfd_image.setText("")
+
+        self.btn_accept_and_new.deleteLater()
         self.btn_accept.clicked.connect(self.__accept)
         self.btn_accept_and_new.clicked.connect(self.__accept_and_new)
         self.btn_cancel.clicked.connect(self.__cancel)
@@ -59,6 +66,12 @@ class AddProductController(QDialog):
                                         "    color : red;"
                                         "}\n")
             self.lbl_info.setText(" * ¡ERROR! No se pudo realizar la coneccion.")
+
+    def __load3(self):
+        self._connector = Conexion()
+        if self._connector.is_connected():
+            sql = "SELECT * FROM bhhj3cug6bdknptqdl7k.product_db WHERE id = '" + str(self.__product) + "'"
+            self.__product = self._connector.run_query(sql)
 
     def __save(self):
         alert = None
@@ -130,6 +143,51 @@ class AddProductController(QDialog):
             alert = " * ¡ERROR! Los campos no pueden estar vacios."
         return alert
 
-    def __remove(self):
-        self.__application.ui_config_modal(ui_modal='remove_product', id=self.__product_data[0])
-        self.__application._load_content_area()
+    def __save(self):
+        alert = None
+        print("nombre de la categoria:", self.__product[0][1])
+        if self.tfd_name.text() != "" and self.ted_description.toPlainText() != "":
+            self._connector = Conexion()
+            if self._connector.is_connected():
+                if self.tfd_name.text() != self.__category[0][1]:
+                    sql = "SELECT id FROM bhhj3cug6bdknptqdl7k.category_db WHERE name = '" + self.tfd_name.text().title() + "'"
+                    data = self._connector.run_query(sql)
+                    if data:
+                        self.lbl_info.setStyleSheet("QLabel {\n"
+                                                    "    font : 77 12px \"Arial\";\n"
+                                                    "    color : red;"
+                                                    "}\n")
+                        self.lbl_info.setText(" * ¡ERROR! La categoría ingresada ya existe.")
+                        alert = " * ¡ERROR! La categoría ingresada ya existe."
+                    else:
+                        sql = "UPDATE bhhj3cug6bdknptqdl7k.category_db  SET name = '" + str(self.tfd_name.text().title())\
+                              +"', image = '" + ((self.tfd_image.text()) if self.tfd_image.text() else 'NULL') \
+                              + "', description = '" + self.ted_description.toPlainText() \
+                              + "' WHERE id = '" + str(self.__category[0][0]) + "'"
+
+                        self._connector.run_query(query=sql)
+                        self._connector.close()
+                else:
+                    sql = "UPDATE bhhj3cug6bdknptqdl7k.category_db  SET name = '" + self.tfd_name.text().title() \
+                          + "', image = '" + ((self.tfd_image.text()) if self.tfd_image.text() else None) \
+                          + "', description = '" + self.ted_description.toPlainText() \
+                          + "' WHERE id = '" + str(self.__category[0][0]) + "'"
+
+                    self._connector.run_query(query=sql)
+                    self._connector.close()
+            else:
+                self.lbl_info.setStyleSheet("QLabel {\n"
+                                            "    font : 77 12px \"Arial\";\n"
+                                            "    color : red;"
+                                            "}\n")
+                self.lbl_info.setText(" * ¡ERROR! No se pudo realizar la coneccion.")
+                alert = " * ¡ERROR! No se pudo realizar la coneccion."
+        else:
+            self.lbl_info.setStyleSheet("QLabel {\n"
+                                        "    font : 77 12px \"Arial\";\n"
+                                        "    color : red;"
+                                        "}\n")
+            self.lbl_info.setText(" * ¡ERROR! Los campos no pueden estar vacios.")
+            alert = " * ¡ERROR! Los campos no pueden estar vacios."
+
+        return alert

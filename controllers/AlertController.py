@@ -12,10 +12,10 @@ class AlertController(QDialog):
         super(AlertController, self).__init__()
         self.__application = __application
         loadUi('views/AlertView.ui', self)
-        self.__setupUiComponents()
+        self.__message = message
         self.__id = id
         self.__from = from_db
-        self.__message = message
+        self.__setupUiComponents()
 
     def __keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
@@ -23,7 +23,7 @@ class AlertController(QDialog):
 
     def __setupUiComponents(self):
         self.content.keyPressEvent = self.__keyPressEvent
-        self.message_box.self.ted_description.setPlainText(self.__message)
+        self.message_box.setPlainText(str(self.__message))
         self.btn_acept.clicked.connect(self.__acept)
         self.btn_cancel.clicked.connect(self.__cancel)
 
