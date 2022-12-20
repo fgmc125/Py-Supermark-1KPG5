@@ -135,21 +135,17 @@ QPushButton {
 	padding-top : 6px;
 	padding-bottom : 6px;
 	qproperty-icon: url(:/icon/assets/icon/house.png);
-	qproperty-text: &quot;&quot;;
 }
 
 #btn_1 {
 	padding-top : 6px;
 	padding-bottom : 6px;
-	
-	qproperty-text: &quot;&quot;;
 }
 
 #btn_2 {
 	padding-top : 6px;
 	padding-bottom : 6px;
 	qproperty-icon: url(:/icon/assets/icon/store.png);
-	qproperty-text: &quot;&quot;;
 }</string>
       </property>
       <property name="frameShape">
@@ -311,7 +307,7 @@ QPushButton {
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="toolTip">
-                <string>Perfil</string>
+                <string/>
                </property>
                <property name="toolTipDuration">
                 <number>-1</number>
@@ -367,6 +363,9 @@ QPushButton {
                </property>
                <property name="toolTip">
                 <string>Inicio</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;un boton XD&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
                 <string/>

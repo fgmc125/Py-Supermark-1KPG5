@@ -39,7 +39,6 @@ class ProductController(QtWidgets.QWidget):
 
     def __show_items(self):
         print(self.__product_data[0])
-        pass #self.__main_controller._reformat_content(self.__category[1], self.__product_data)
 
     def __remove(self):
         self.__main_controller.ui_config_modal(ui_modal='remove_product', id=self.__product_data[0])

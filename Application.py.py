@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication
 
 from controllers.AddCategoryController import AddCategoryController
 from controllers.AddProductController import AddProductController
+from controllers.AddUserController import AddUserController
 from controllers.AlertController import AlertController
 from controllers.EditCategoryController import EditCategoryController
 from controllers.EditProductController import EditProductController
@@ -43,18 +44,22 @@ class Application:
         if __ui_modal:
             if __ui_modal == "new_product":
                 self.__ui_modal = AddProductController(self)
-            elif __ui_modal == "new_category":
-                self.__ui_modal = AddCategoryController(self)
-            elif __ui_modal == "new_user":
-                self.__ui_modal = AddCategoryController(self)
-            elif __ui_modal == "remove_product":
-                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.product_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
-            elif __ui_modal == "remove_category":
-                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.category_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
-            elif __ui_modal == "edit_category":
-                self.__ui_modal = EditCategoryController(self, category=__id)
             elif __ui_modal == "edit_product":
                 self.__ui_modal = EditProductController(self, product=__id)
+            elif __ui_modal == "remove_product":
+                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.product_db', message="¿Esta seguro que desea eliminar el producto de la base de datos?")
+            elif __ui_modal == "new_category":
+                self.__ui_modal = AddCategoryController(self)
+            elif __ui_modal == "edit_category":
+                self.__ui_modal = EditCategoryController(self, category=__id)
+            elif __ui_modal == "remove_category":
+                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.category_db', message="¿Esta seguro que desea eliminar la categoría de la base de datos?")
+            elif __ui_modal == "new_user":
+                self.__ui_modal = AddUserController(self)
+            elif __ui_modal == "edit_user":
+                self.__ui_modal = EditCategoryController(self, category=__id)
+            elif __ui_modal == "remove_user":
+                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.user_db', message="¿Esta seguro que desea eliminar el usuario de la base de datos?")
 
             if ui:
                 ui.close()

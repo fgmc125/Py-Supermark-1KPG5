@@ -8,17 +8,32 @@ from mysqlhelper.Conector import Conexion
 
 
 class CartCardController(QtWidgets.QWidget):
-    def __init__(self, main_controller, user):
+    def __init__(self, main_controller, user, product_data):
         super(CartCardController, self).__init__()
         loadUi('views/CardView.ui', self)
         self.__main_controller = main_controller
-        self.__product_data = None
+        self.__product_data = product_data
         self.__user = user
 
         self.__setupUiComponents()
 
     def __setupUiComponents(self):
         if not self.__main_controller._application.is_staff:
+            self.btn_show_items.deleteLater()
+
+            self.sbx_current = QtWidgets.QSpinBox(self.frame_10)
+            self.sbx_current.setStyleSheet("QLineEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox {\n"
+                                           "    background-color : transparent;\n"
+                                           "    border : 1px solid #DADDE1;\n"
+                                           "    border-radius : 5px;\n"
+                                           "    color : #616161;\n"
+                                           "    min-height : 40px;\n"
+                                           "    font : 77 18px \"Arial\";\n"
+                                           "}")
+            self.sbx_current.setObjectName("sbx_current")
+            self.horizontalLayout_11.addWidget(self.sbx_current)
+            self.sbx_current.setMaximum(self.__product_data[4])
+
             self.btn_a = QtWidgets.QPushButton(self.frame_10)
             self.btn_a.setMinimumSize(QtCore.QSize(40, 40))
             self.btn_a.setMaximumSize(QtCore.QSize(40, 40))
@@ -51,6 +66,7 @@ class CartCardController(QtWidgets.QWidget):
             self.btn_a.setIcon(icon)
             self.btn_a.setObjectName("btn_a")
             self.horizontalLayout_11.addWidget(self.btn_a)
+
             self.btn_b = QtWidgets.QPushButton(self.frame_10)
             self.btn_b.setMinimumSize(QtCore.QSize(40, 40))
             self.btn_b.setMaximumSize(QtCore.QSize(40, 40))

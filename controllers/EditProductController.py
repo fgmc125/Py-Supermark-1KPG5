@@ -44,7 +44,6 @@ class EditProductController(QDialog):
         self.btn_accept.clicked.connect(self.__accept)
         self.btn_cancel.clicked.connect(self.__cancel)
 
-
     def __cancel(self):
         self.__application.ui_config_modal("")
 
@@ -100,7 +99,7 @@ class EditProductController(QDialog):
                                 current_category = category[0]
                                 break
                         sql = "UPDATE bhhj3cug6bdknptqdl7k.product_db  SET " \
-                              "name = '" + str(self.tfd_name.text().title())\
+                              "name = '" + str(self.tfd_name.text().title()) \
                               + "', image = '" + ((self.tfd_image.text()) if self.tfd_image.text() else 'NULL') \
                               + "', price = '" + str(self.dsb_price.value()) \
                               + "', current = '" + str(self.sbx_current.value()) \

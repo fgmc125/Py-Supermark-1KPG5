@@ -98,8 +98,18 @@ class CategoryCardController(QtWidgets.QWidget):
         self.__main_controller._reformat_content(self.__category[1], self.__product_data)
 
     def __remove(self):
-        self.__main_controller.ui_config_modal(ui_modal='remove_category', id=self.__category[0])
-        self.__main_controller._load_content_area()
+        self._connector = Conexion()
+        if self._connector.is_connected():
+            sql = "SELECT COUNT(*) FROM bhhj3cug6bdknptqdl7k.product_db WHERE family_id='" + str(self.__category[0]) + "'"
+            data = self._connector.run_query(sql)
+            print(data[0][0])
+            if data[0][0]>0:
+                print("No se puede eliminar categorías que tengan elementos.")
+            else:
+                self.__main_controller.ui_config_modal(ui_modal='remove_category', id=self.__category[0])
+                self.__main_controller._load_content_area()
+
+
 
     def __edit(self):
         self.__main_controller.ui_config_modal("edit_category", id=self.__category[0])

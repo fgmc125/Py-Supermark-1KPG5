@@ -98,7 +98,8 @@ class ProductCardController(QtWidgets.QWidget):
 
     def __remove(self):
         self.__main_controller.ui_config_modal(ui_modal='remove_product', id=self.__product_data[0])
-        self.__main_controller._load_content_area()
+        self.__main_controller._reformat_content(self.__category, self.__main_controller._application.products_data[self.__category])
+        #self.__main_controller._load_content_area()
 
     def __edit(self):
         self.__main_controller.ui_config_modal("edit_product", id=self.__product_data[0])
