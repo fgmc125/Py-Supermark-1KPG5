@@ -24,7 +24,7 @@ class ProductController(QtWidgets.QWidget):
         self.tfd_price.setText(self.tfd_price.text() + str(self.__product_data[3]))
         self.sbx_amount.setMaximum(int(self.__product_data[4]))
 
-        self.btn_add_to_cart.clicked.connect(self.__show_items)
+        self.btn_add_to_cart.clicked.connect(self.__add_to_cart)
         self.btn_buy.clicked.connect(self.__show_items)
         self.btn_send_message.clicked.connect(self.__show_items)
 
@@ -46,10 +46,10 @@ class ProductController(QtWidgets.QWidget):
     def __edit(self):
         self.__main_controller.ui_config_modal("edit_product", id=self.__product_data[0])
 
-    def __add_tocart(self):
+    def __add_to_cart(self):
         self._connector = Conexion()
         if self._connector.is_connected():
-            sql = "SELECT id, name FROM bhhj3cug6bdknptqdl7k.category_db"
+            sql = "SELECT * name FROM bhhj3cug6bdknptqdl7k.shopping_cart_db WHERE name = '" + self.__main_controller._application.user + "'"
             self.category_data = self._connector.run_query(sql)
             if self.category_data:
                 for supplier in self.supplier_data:
