@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>592</width>
-    <height>672</height>
+    <height>765</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <property name="minimumSize">
       <size>
        <width>570</width>
-       <height>650</height>
+       <height>743</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -237,7 +237,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="ted_message_2">
+                <widget class="QTextEdit" name="ted_details">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -288,9 +288,6 @@ p, li { white-space: pre-wrap; }
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
-               <property name="spacing">
-                <number>10</number>
-               </property>
                <property name="leftMargin">
                 <number>0</number>
                </property>
@@ -304,6 +301,28 @@ p, li { white-space: pre-wrap; }
                 <number>0</number>
                </property>
                <item>
+                <widget class="QLabel" name="tfd_price">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+	font : 18px &quot;Arial&quot;;
+	color: #A0A0A0;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Precio $</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QSpinBox" name="sbx_amount">
                  <property name="styleSheet">
                   <string notr="true">QLineEdit, QTextEdit, QComboBox, QSpinBox, QDoubleSpinBox {
@@ -314,6 +333,28 @@ p, li { white-space: pre-wrap; }
 	min-height : 40px;
 	font : 77 18px &quot;Arial&quot;;
 }</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="tfd_total">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+	font : 18px &quot;Arial&quot;;
+	color: #A0A0A0;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Total $</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>

@@ -20,6 +20,8 @@ class ProductController(QtWidgets.QWidget):
         labels = self.findChildren(QtWidgets.QLabel)
         labels[0].setText(self.__product_data[1])
         labels[1].setText(self.__category)
+        self.ted_details.setPlainText(self.__product_data[3])
+
 
         self.btn_add_to_cart.clicked.connect(self.__show_items)
         self.btn_buy.clicked.connect(self.__show_items)
