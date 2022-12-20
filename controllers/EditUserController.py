@@ -9,10 +9,11 @@ from mysqlhelper.Conector import Conexion
 
 
 class EditUserController(QDialog):
-    def __init__(self, __application):
+    def __init__(self, __application, user):
         super(EditUserController, self).__init__()
         self.__application = __application
         loadUi('views/AddUserView.ui', self)
+        self.__user = user
         self.__setupUiComponents()
 
     def __setupUiComponents(self):

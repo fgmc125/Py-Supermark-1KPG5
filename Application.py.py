@@ -7,6 +7,7 @@ from controllers.AddUserController import AddUserController
 from controllers.AlertController import AlertController
 from controllers.EditCategoryController import EditCategoryController
 from controllers.EditProductController import EditProductController
+from controllers.EditUserController import EditUserController
 from controllers.LoginController import LoginController
 from controllers.SignupController import SignupController
 from controllers.MainController import MainController
@@ -57,7 +58,7 @@ class Application:
             elif __ui_modal == "new_user":
                 self.__ui_modal = AddUserController(self)
             elif __ui_modal == "edit_user":
-                self.__ui_modal = EditCategoryController(self, category=__id)
+                self.__ui_modal = EditUserController(self, user=__id)
             elif __ui_modal == "remove_user":
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.user_db', message="¿Esta seguro que desea eliminar el usuario de la base de datos?")
 
