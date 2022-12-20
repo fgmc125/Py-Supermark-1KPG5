@@ -1024,7 +1024,7 @@ QPushButton:hover {
 	border-radius: 5px;
 }
 
-#btn_item_var_0:pressed, #btn_item_var_1:pressed, #btn_item_var_2 {
+#btn_item_var_0:pressed, #btn_item_var_1:pressed, #btn_item_var_2:pressed {
 	background-color : transparent;
 	color : #42B72A;
 	border: 1px solid #42B72A;
