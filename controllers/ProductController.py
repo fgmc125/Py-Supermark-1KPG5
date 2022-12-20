@@ -22,7 +22,7 @@ class ProductController(QtWidgets.QWidget):
         labels[1].setText(self.__category)
         self.ted_details.setPlainText(self.__product_data[2])
         self.tfd_price.setText(self.tfd_price.Text() + str(self.__product_data[3]))
-
+        self.sbx_amount.setMaximum(int(self.__product_data[4]))
 
         self.btn_add_to_cart.clicked.connect(self.__show_items)
         self.btn_buy.clicked.connect(self.__show_items)
