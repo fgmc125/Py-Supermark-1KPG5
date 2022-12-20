@@ -47,18 +47,19 @@ class ProductController(QtWidgets.QWidget):
         self.__main_controller.ui_config_modal("edit_product", id=self.__product_data[0])
 
     def __add_to_cart(self):
-        self._connector = Conexion()
-        if self._connector.is_connected():
-            sql = "SELECT * name FROM bhhj3cug6bdknptqdl7k.shopping_cart_db WHERE name = '" + self.__main_controller._application.user + "'"
-            self.category_data = self._connector.run_query(sql)
-            if self.category_data:
-                for supplier in self.supplier_data:
-                    self.cbx_supplier.addItem(supplier[1])
-                for category in self.category_data:
-                    self.cbx_category.addItem(category[1])
-        else:
-            self.lbl_info.setStyleSheet("QLabel {\n"
-                                        "    font : 77 12px \"Arial\";\n"
-                                        "    color : red;"
-                                        "}\n")
-            self.lbl_info.setText(" * ¡ERROR! No se pudo realizar la coneccion.")
+        pass
+        # self._connector = Conexion()
+        # if self._connector.is_connected():
+        #     sql = "SELECT id FROM bhhj3cug6bdknptqdl7k.shopping_cart_db WHERE name = '" + self.__main_controller._application.user + "'"
+        #     self.category_data = self._connector.run_query(sql)
+        #     if self.category_data:
+        #         for supplier in self.supplier_data:
+        #             self.cbx_supplier.addItem(supplier[1])
+        #         for category in self.category_data:
+        #             self.cbx_category.addItem(category[1])
+        # else:
+        #     self.lbl_info.setStyleSheet("QLabel {\n"
+        #                                 "    font : 77 12px \"Arial\";\n"
+        #                                 "    color : red;"
+        #                                 "}\n")
+        #     self.lbl_info.setText(" * ¡ERROR! No se pudo realizar la coneccion.")
