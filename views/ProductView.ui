@@ -311,7 +311,7 @@ p, li { white-space: pre-wrap; }
                  <property name="styleSheet">
                   <string notr="true">QLabel {
 	font : 18px &quot;Arial&quot;;
-	color: #A0A0A0;
+	color: #616161;
 }</string>
                  </property>
                  <property name="text">
@@ -347,7 +347,7 @@ p, li { white-space: pre-wrap; }
                  <property name="styleSheet">
                   <string notr="true">QLabel {
 	font : 18px &quot;Arial&quot;;
-	color: #A0A0A0;
+	color: #616161;
 }</string>
                  </property>
                  <property name="text">
