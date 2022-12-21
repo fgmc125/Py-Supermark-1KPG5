@@ -143,10 +143,11 @@ class CartCardController(QtWidgets.QWidget):
                 self._connector.run_query(query=sql)
                 self._connector.close()
 
-                print("Se actualizo el item.")
+                alert = "Se actualizo el item."
+                self.__application.ui_config_modal("common_alert", alert)
         else:
             alert = " * ¡ERROR! No se pudo realizar la coneccion."
-            print(alert)
+            self.__application.ui_config_modal("common_alert", alert)
 
     def __save_item_from_cart(self):
         self._connector = Conexion()

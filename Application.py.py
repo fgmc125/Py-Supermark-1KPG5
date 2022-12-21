@@ -5,6 +5,7 @@ from controllers.AddCategoryController import AddCategoryController
 from controllers.AddProductController import AddProductController
 from controllers.AddUserController import AddUserController
 from controllers.AlertController import AlertController
+from controllers.CommonAlertController import CommonAlertController
 from controllers.EditCategoryController import EditCategoryController
 from controllers.EditProductController import EditProductController
 from controllers.EditUserController import EditUserController
@@ -69,6 +70,8 @@ class Application:
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.user_db', message="¿Esta seguro que desea eliminar el usuario de la base de datos?")
             elif __ui_modal == "remove_cart_item":
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.shopping_cart_db', message="¿Esta seguro que desea eliminar el producto de tu carrito?")
+            elif __ui_modal == "common_alert":
+                self.__ui_modal = CommonAlertController(self, message=__id)
 
             if ui:
                 ui.close()

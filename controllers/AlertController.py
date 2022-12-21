@@ -28,15 +28,17 @@ class AlertController(QDialog):
         self.btn_cancel.clicked.connect(self.__cancel)
 
     def __acept(self):
+        alert = ""
         self._connector = Conexion()
         if self._connector.is_connected():
             sql = "DELETE FROM "+ self.__from +" WHERE (id = '%s')"
             data = [self.__id]
             self._connector.run_query(query=sql, data=data)
+            alert = "INFORMACIÓN!, Se ha eliminado correctamente."
         else:
-            print("ALERTA! No se pudo conectar con la base de datos")
+            alert = "common_alert", "ALERTA! No se pudo conectar con la base de datos"
         self._connector.close()
-        self.__application.ui_config_modal("")
+        self.__application.ui_config_modal("common_alert", alert)
 
 
     def __cancel(self):

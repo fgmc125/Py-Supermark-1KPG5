@@ -383,16 +383,16 @@ class MainController(QMainWindow):
             self.verticalLayout_13.addItem(self.q_spacer_item)
 
     def __show_in_table(self):
-        if "CATEGORÍAS" in self.lbl_title.text():
+        if "CATEGORÍAS" in self.lbl_title.text() and self.lbl_title.text().count('/') == 0:
             self._load_content_area_with_categories(needs_update=False, show_in_table=True)
 
-        elif "CATEGORÍAS / " in self.lbl_title.text():
+        elif "CATEGORÍAS" in self.lbl_title.text() and self.lbl_title.text().count('/') == 1:
             category_temp = self.lbl_title.text()[self.lbl_title.text().find('/')+1:].title()
             for item in self._application.categories_data:
-                if item[1] == category_temp:
+                if item[1] in category_temp:
                     category_temp = item
                     break
-            self._load_content_area_with_products(category_temp, self._application.products_data[category_temp], show_in_table=True)
+            self._load_content_area_with_products(category_temp[1], self._application.products_data[category_temp[1]], show_in_table=True)
 
             pass
         elif "CATEGORÍAS" in self.lbl_title.text() and self.lbl_title.text().count('/') == 2:
@@ -400,11 +400,11 @@ class MainController(QMainWindow):
             category_temp = self.lbl_title.text()[self.lbl_title.text().find('/')+1:index_temp-1].title()
             product_temp = self.lbl_title.text()[index_temp+1:].title()
             for item in self._application.products_data[category_temp]:
-                if item[1] == product_temp:
+                if item[1] in product_temp:
                     product_temp = item
                     break
             for item in self._application.categories_data:
-                if item[1] == category_temp:
+                if item[1] in category_temp:
                     category_temp = item
                     break
             self._load_product_view(product_temp, category_temp, show_in_table=True)

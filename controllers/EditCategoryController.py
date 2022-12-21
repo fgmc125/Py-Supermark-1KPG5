@@ -32,7 +32,7 @@ class EditCategoryController(QDialog):
 
     def __accept(self):
         if not self.__save():
-            self.__application.ui_config_modal("")
+            self.__application.ui_config_modal("common_alert", "INFORMACIÓN!, Se modifico correctamente la categoría.")
 
     def __load(self):
         self._connector = Conexion()

@@ -32,8 +32,7 @@ class AddUserController(QDialog):
 
     def __accept(self):
         if not self.__save():
-
-            self.__application.ui_config_modal("")
+            self.__application.ui_config_modal("common_alert", "INFORMACIÓN!, Se agrego el usuario.")
 
     def __verify(self):
         return (self.tfd_name.text() != "" and self.ted_description.toPlainText() != "") if True else False
