@@ -132,4 +132,4 @@ class AddProductController(QDialog):
 
     def __remove(self):
         self.__application.ui_config_modal(ui_modal='remove_product', id=self.__product_data[0])
-        self.__application._load_content_area()
+        self.__application._load_content_area_with_categories()

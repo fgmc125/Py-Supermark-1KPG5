@@ -95,7 +95,7 @@ class CategoryCardController(QtWidgets.QWidget):
             self.btn_b.clicked.connect(self.__remove)
 
     def __show_items(self):
-        self.__main_controller._reformat_content(self.__category[1], self.__product_data)
+        self.__main_controller._load_content_area_with_products(self.__category[1], self.__product_data)
 
     def __remove(self):
         self._connector = Conexion()
@@ -107,7 +107,7 @@ class CategoryCardController(QtWidgets.QWidget):
                 print("No se puede eliminar categorías que tengan elementos.")
             else:
                 self.__main_controller.ui_config_modal(ui_modal='remove_category', id=self.__category[0])
-                self.__main_controller._load_content_area()
+                self.__main_controller._load_content_area_with_categories()
 
 
 

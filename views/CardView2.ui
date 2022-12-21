@@ -20,7 +20,7 @@
    <item>
     <widget class="QFrame" name="fme_card_content_0">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -46,7 +46,7 @@ QPushButton:hover {
 
 QFrame {
 	border : 1px solid;
-	border-color: #CED7E6;
+	border-color: transparent;
     border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
 	border-bottom-right-radius: 7px;
@@ -79,9 +79,9 @@ QFrame {
        <widget class="QFrame" name="fme_image_cap_2">
         <property name="styleSheet">
          <string notr="true">QFrame {
-	background-color : #CED7E6;
+	background-color :transparent;
 	border : 1px solid;
-	border-color: #CED7E6;
+	border-color: transparent;
     border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
 	border-bottom-right-radius: 0px;
@@ -100,7 +100,7 @@ QFrame {
         <property name="midLineWidth">
          <number>0</number>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_19" stretch="0">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -120,19 +120,27 @@ QFrame {
           <number>0</number>
          </property>
          <item>
-          <widget class="QFrame" name="fme_image">
-           <property name="styleSheet">
-            <string notr="true">QFrame {
-    background-image: url(:/images/assets/img/image-polaroid.png);
-    background-repeat : none;
-	background-position: center center;
-}</string>
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
            </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+           <property name="text">
+            <string/>
            </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
+           <property name="pixmap">
+            <pixmap resource="assets.qrc">:/images/assets/img/cart-shopping.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

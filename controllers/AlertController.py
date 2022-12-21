@@ -36,7 +36,6 @@ class AlertController(QDialog):
         else:
             print("ALERTA! No se pudo conectar con la base de datos")
         self._connector.close()
-        self.__application.load_data()
         self.__application.ui_config_modal("")
 
 

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>424</width>
+    <height>424</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Datos del usuario</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color : #FFF;
+	margin : 0px;
+	padding : 0px;
+}
+
+QFrame#content {
+	background-color : transparent;
+	border: 1px solid #DADDE1;
+	border-radius: 5px;
+	min-width : 400px;
+	min-height : 400px;
+}
+
+QLabel {
+	font : 77 12px &quot;Arial&quot;;
+	color : green;
+}
+
+QLineEdit {
+	background-color : transparent;
+	border : 1px solid #DADDE1;
+	border-radius : 5px;
+	color : #616161;
+	min-height : 40px;
+	font : 77 18px &quot;Arial&quot;;
+}
+
+QPushButton {
+	color : #FFFFFF;
+	border-style : solid;
+	border-radius: 5px;
+	min-height : 40px;
+	font : 77 18px &quot;Arial&quot;;
+}
+
+QPushButton#btn_login {
+	background-color : #1877F2;
+}
+
+QPushButton#btn_login:pressed {
+	background-color : transparent;
+	color : #1877F2;
+	border: 1px solid #1877F2;
+	border-radius: 5px;
+}
+
+QPushButton#btn_signup {
+	background-color : #42B72A;
+}
+
+QPushButton#btn_signup:hover, #btn_exit:hover, #btn_login:hover, #btn_cancel:hover {
+	border: 1px solid #FFF;
+	border-radius: 5px;
+}
+
+QPushButton#btn_signup:pressed {
+	background-color : transparent;
+	color : #42B72A;
+	border: 1px solid #42B72A;
+	border-radius: 5px;
+}
+
+QPushButton#btn_exit {
+	background-color : #616161;
+}
+
+QPushButton#btn_exit:pressed {
+	background-color : transparent;
+	color : #616161;
+	border: 1px solid #616161;
+	border-radius: 5px;
+}
+
+QPushButton#btn_forgotten_password {
+	border-style: outset;
+	border-width: 0px;
+	color : #1877F2;
+	font : 77 15px &quot;Arial&quot;;
+}
+
+QPushButton#btn_forgotten_password:hover {
+	text-decoration: underline;
+}
+
+QPushButton#btn_cancel {
+	background-color : red;
+}
+
+QPushButton#btn_cancel:pressed {
+	background-color : transparent;
+	color : red;
+	border: 1px solid red;
+	border-radius: 5px;
+}
+
+QPushButton#btn_show_password, #btn_show_repassword {
+	qproperty-icon: url(C:/Users/fgmcx/Documents/PycharmProjects/pythonProject1/icon/candado-cerrado.png);
+	qproperty-iconSize: 24px;
+	min-widgth : 32px;
+	min-height : 32px;
+}
+
+QPushButton#btn_show_password:hover, #btn_show_repassword:hover {
+	background-color : #DADDE1;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="content">
+     <property name="minimumSize">
+      <size>
+       <width>402</width>
+       <height>402</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+/* ------------------------- ToolTip ------------------------------ */
+
+QToolTip {
+	color: #ffffff;
+	background-color: #5E6065;
+	border: 1px solid rgb(44, 49, 58);
+	background-image: none;
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 3px solid #31AFD6;
+	text-align: left;
+	padding: 8px;
+	margin: 0px;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QLabel" name="lbl_info">
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+	font : 18px &quot;Arial&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string> Datos del usuario.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_name">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>Nombre</string>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_surname">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Apellido</string>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_email">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Correo electrónico</string>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="tfd_user">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Nombre de usuario</string>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="fme_input_user">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>2</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>2</number>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="tfd_created">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Fecha de creación</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="fme_input_user_2">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="tfd_updated">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Fecha de ultimo ingreso</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="btn_close">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Cierra la ventana.</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Soy un boton pues, ¿Qué más esperabas?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color : #FFFFFF;
+	border-style : solid;
+	border-radius: 5px;
+	min-height : 40px;
+	font : 77 18px &quot;Arial&quot;;
+	background-color : #42B72A;
+	padding-left : 20px;
+	padding-right : 20px;
+}
+
+QPushButton:hover {
+	border: 1px solid #FFF;
+	border-radius: 5px;
+}
+
+QPushButton:pressed {
+	background-color : transparent;
+	color : #42B72A;
+	border: 1px solid #42B72A;
+	border-radius: 5px;
+}
+
+</string>
+           </property>
+           <property name="text">
+            <string>Cerrar</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

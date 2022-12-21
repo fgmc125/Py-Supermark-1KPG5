@@ -14,20 +14,24 @@ from controllers.MainController import MainController
 
 import sys
 
+from controllers.UserController import UserController
 from mysqlhelper.Conector import Conexion
 
 
 class Application:
     def __init__(self):
         self.__connector = None
-        self.TITTLE = "v0.20221219"
+        self.TITTLE = "v0.20221220"
 
+        self.user_id = None
         self.user = ""
         self.is_staff = None
         self.is_superuser = None
 
         self.categories_data = None
         self.products_data = dict()
+        self.shopping_cart = None
+
         self.load_data()
 
         useGUI = not '-no-gui' in sys.argv
@@ -55,12 +59,16 @@ class Application:
                 self.__ui_modal = EditCategoryController(self, category=__id)
             elif __ui_modal == "remove_category":
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.category_db', message="¿Esta seguro que desea eliminar la categoría de la base de datos?")
+            elif __ui_modal == "view_user":
+                self.__ui_modal = UserController(self, user=__id)
             elif __ui_modal == "new_user":
                 self.__ui_modal = AddUserController(self)
             elif __ui_modal == "edit_user":
                 self.__ui_modal = EditUserController(self, user=__id)
             elif __ui_modal == "remove_user":
                 self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.user_db', message="¿Esta seguro que desea eliminar el usuario de la base de datos?")
+            elif __ui_modal == "remove_cart_item":
+                self.__ui_modal = AlertController(self, id=__id, from_db='bhhj3cug6bdknptqdl7k.shopping_cart_db', message="¿Esta seguro que desea eliminar el producto de tu carrito?")
 
             if ui:
                 ui.close()
@@ -86,6 +94,11 @@ class Application:
     def getTitle(self):
         return self.TITTLE
 
+    def getMainView(self):
+        print(type(self.__ui) == MainController)
+        if type(self.__ui) == MainController:
+            return self.__ui
+
     def load_data(self):
         self.__connector = Conexion()
         print("DEBUG: Iniciando carga de datos:")
@@ -93,7 +106,6 @@ class Application:
         if self.__connector.is_connected():
             sql = "SELECT * FROM bhhj3cug6bdknptqdl7k.category_db"
             self.categories_data = self.__connector.run_query(sql)
-            #self._connector.close()
 
         print("DEBUG: 100%")
         print("DEBUG: 2 de 2: productos")

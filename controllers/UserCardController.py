@@ -18,10 +18,8 @@ class UserCardController(QtWidgets.QWidget):
         self.__setupUiComponents()
 
     def __setupUiComponents(self):
-        print(self.__user)
         if self.__main_controller._application.is_staff:
             self.btn_show_items.setText("detalles")
-
             self.btn_a = QtWidgets.QPushButton(self.frame_10)
             self.btn_a.setMinimumSize(QtCore.QSize(40, 40))
             self.btn_a.setMaximumSize(QtCore.QSize(40, 40))
@@ -93,7 +91,7 @@ class UserCardController(QtWidgets.QWidget):
 
         labels = self.findChildren(QtWidgets.QLabel)
         labels[0].setText(self.__user[1].title())
-        labels[1].setText("Creado el " + str(self.__user[4]))
+        labels[1].setText("Creado el " + str(self.__user[5]))
 
         self.btn_show_items.clicked.connect(self.__show_items)
         if self.__main_controller._application.is_staff:
@@ -102,11 +100,11 @@ class UserCardController(QtWidgets.QWidget):
                 self.btn_b.clicked.connect(self.__remove)
 
     def __show_items(self):
-        self.__main_controller._reformat_content(self.__category[1], self.__product_data)
+        self.__main_controller.ui_config_modal(ui_modal='view_user', id=self.__user)
 
     def __remove(self):
-        self.__main_controller.ui_config_modal(ui_modal='remove_category', id=self.__category[0])
-        self.__main_controller._load_content_area()
+        self.__main_controller.ui_config_modal(ui_modal='remove_user', id=self.__user[0])
+        self.__main_controller._load_content_area_with_categories()
 
     def __edit(self):
-        self.__main_controller.ui_config_modal("edit_user", id=self.__user[0])
+        self.__main_controller.ui_config_modal("edit_user", id=self.__user)

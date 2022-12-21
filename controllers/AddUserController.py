@@ -29,8 +29,10 @@ class AddUserController(QDialog):
             self.ted_description.setPlainText("")
             self.tfd_image.setText("")
 
+
     def __accept(self):
         if not self.__save():
+
             self.__application.ui_config_modal("")
 
     def __verify(self):

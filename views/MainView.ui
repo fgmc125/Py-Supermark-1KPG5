@@ -752,6 +752,9 @@ QPushButton {
                  <height>32</height>
                 </size>
                </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
 	color : #6BA6FD;
@@ -933,6 +936,9 @@ QPushButton:pressed {
                       <font>
                        <pointsize>9</pointsize>
                       </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
                      </property>
                      <property name="text">
                       <string/>
@@ -1159,7 +1165,10 @@ QPushButton:hover {
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="pushButton_2">
+                 <widget class="QPushButton" name="btn_show_in_table">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true"/>
                   </property>
@@ -1179,7 +1188,10 @@ QPushButton:hover {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton">
+                 <widget class="QPushButton" name="show_with_cards">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true"/>
                   </property>

@@ -14,8 +14,8 @@ class LoginController(QDialog):
         loadUi('views/LoginView.ui', self)
         self.__setupUiComponents()
 
-        self.tfd_user.setText("admin")
-        self.tfd_password.setText("admin")
+        self.tfd_user.setText("user")
+        self.tfd_password.setText("123456")
 
     def __keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:
@@ -30,7 +30,7 @@ class LoginController(QDialog):
         self._connector = Conexion()
         if self._connector.is_connected():
             if self.tfd_user.text():
-                sql = """SELECT password,is_superuser,is_staff  FROM bhhj3cug6bdknptqdl7k.user_db WHERE username = %s"""
+                sql = """SELECT password,is_superuser,is_staff,id  FROM bhhj3cug6bdknptqdl7k.user_db WHERE username = %s"""
                 data = self.tfd_user.text(),
                 sql_return = self._connector.run_query(sql, data)
                 if sql_return:
@@ -46,6 +46,7 @@ class LoginController(QDialog):
                         self.__application.user = self.tfd_user.text()
                         self.__application.is_superuser = (sql_return[0][1] == 1) if True else False
                         self.__application.is_staff = (sql_return[0][2] == 1) if True else False
+                        self.__application.user_id = sql_return[0][3]
                         self._connector.close()
                         self.__application.ui_config("main")
                     else:
