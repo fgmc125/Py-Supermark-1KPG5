@@ -204,27 +204,13 @@ QFrame {
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_21" stretch="0,0">
+           <layout class="QVBoxLayout" name="verticalLayout_21" stretch="0">
             <property name="topMargin">
              <number>0</number>
             </property>
             <property name="bottomMargin">
              <number>0</number>
             </property>
-            <item>
-             <widget class="QLabel" name="lbl_card_title">
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-	margin-top : 12px;
-	font : 18px &quot;Arial&quot;;
-	color: #34373B;
-}</string>
-              </property>
-              <property name="text">
-               <string>Category name</string>
-              </property>
-             </widget>
-            </item>
             <item>
              <widget class="QLabel" name="lbl_card_subtitle">
               <property name="styleSheet">
